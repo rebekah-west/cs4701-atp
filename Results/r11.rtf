@@ -1,0 +1,40 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1404\cocoasubrtf470
+{\fonttbl\f0\fnil\fcharset0 Menlo-Regular;}
+{\colortbl;\red255\green255\blue255;}
+\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f0\fs22 \cf0 \CocoaLigature0 ./vampire_z3_rel_master_5315 ../../TPTP/Problems/2Start/15.tptp\
+Running in auto input_syntax mode. Trying TPTP\
+% Refutation found. Thanks to Tanya!\
+% SZS status Theorem for 15\
+% SZS output start Proof for 15\
+1. ! [X0] : s(X0) != 0 [input]\
+7. ! [X0,X1] : (less(X0,X1) <=> ? [X2] : (0 != X2 & p(X0,X2) = X1)) [input]\
+10. 1 = s(0) [input]\
+11. ! [X0] : less(X0,p(X0,1)) [input]\
+12. ~! [X0] : less(X0,p(X0,1)) [negated conjecture 11]\
+16. ? [X0] : ~less(X0,p(X0,1)) [ennf transformation 12]\
+17. ! [X0,X1] : ((less(X0,X1) | ! [X2] : (0 = X2 | p(X0,X2) != X1)) & (? [X2] : (0 != X2 & p(X0,X2) = X1) | ~less(X0,X1))) [nnf transformation 7]\
+18. ! [X0,X1] : ((less(X0,X1) | ! [X2] : (0 = X2 | p(X0,X2) != X1)) & (? [X3] : (0 != X3 & p(X0,X3) = X1) | ~less(X0,X1))) [rectify 17]\
+19. ! [X0,X1] : (? [X3] : (0 != X3 & p(X0,X3) = X1) => (0 != sK0(X0,X1) & p(X0,sK0(X0,X1)) = X1)) [choice axiom]\
+20. ! [X0,X1] : ((less(X0,X1) | ! [X2] : (0 = X2 | p(X0,X2) != X1)) & ((0 != sK0(X0,X1) & p(X0,sK0(X0,X1)) = X1) | ~less(X0,X1))) [skolemisation 18,19]\
+22. ? [X0] : ~less(X0,p(X0,1)) => ~less(sK1,p(sK1,1)) [choice axiom]\
+23. ~less(sK1,p(sK1,1)) [skolemisation 16,22]\
+24. s(X0) != 0 [cnf transformation 1]\
+32. less(X0,X1) | 0 = X2 | p(X0,X2) != X1 [cnf transformation 20]\
+37. 1 = s(0) [cnf transformation 10]\
+38. ~less(sK1,p(sK1,1)) [cnf transformation 23]\
+39. less(X0,p(X0,X2)) | 0 = X2 [equality resolution 32]\
+52. 0 != 1 [superposition 24,37]\
+59. 0 = 1 [resolution 39,38]\
+62. $false [subsumption resolution 59,52]\
+% SZS output end Proof for 15\
+% ------------------------------\
+% Version: Vampire 4.5.1 (commit 825fbfb on 2021-03-24 17:39:46 +0100)\
+% Linked with Z3 4.8.10.0 517d907567f4283ad8b48ff9c2a3f6dce838569e z3-4.8.4-4541-g517d907\
+% Termination reason: Refutation\
+\
+% Memory used [KB]: 4861\
+% Time elapsed: 0.003 s\
+% ------------------------------}

@@ -1,0 +1,85 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1404\cocoasubrtf470
+{\fonttbl\f0\fnil\fcharset0 Menlo-Regular;}
+{\colortbl;\red255\green255\blue255;}
+\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f0\fs22 \cf0 \CocoaLigature0 ./vampire_z3_rel_master_5315 ../../TPTP/Problems/2Start/13.tptp\
+Running in auto input_syntax mode. Trying TPTP\
+% Refutation found. Thanks to Tanya!\
+% SZS status Theorem for 13\
+% SZS output start Proof for 13\
+3. ! [X0] : p(X0,0) = X0 [input]\
+5. ! [X0] : 0 = m(X0,0) [input]\
+6. ! [X0,X1] : m(X0,s(X1)) = p(m(X0,X1),X0) [input]\
+7. ! [X0] : (pre(X0) <=> ! [X1] : m(X0,X1) = m(X1,X0)) [input]\
+8. ! [X0] : (((pre(X0) => pre(s(X0))) & pre(0)) => ! [X1] : pre(X1)) [input]\
+9. ! [X1] : ((! [X0] : (m(X0,X1) = m(X1,X0) => m(X1,s(X0)) = m(s(X0),X1)) & m(X1,0) = m(0,X1)) => ! [X2] : m(X1,X2) = m(X2,X1)) [input]\
+10. ! [X0,X1] : m(X0,X1) = m(X1,X0) [input]\
+11. ~! [X0,X1] : m(X0,X1) = m(X1,X0) [negated conjecture 10]\
+12. ! [X0] : ((! [X1] : (m(X0,X1) = m(X1,X0) => m(X0,s(X1)) = m(s(X1),X0)) & m(X0,0) = m(0,X0)) => ! [X2] : m(X0,X2) = m(X2,X0)) [rectify 9]\
+14. ! [X0] : (! [X1] : pre(X1) | ((~pre(s(X0)) & pre(X0)) | ~pre(0))) [ennf transformation 8]\
+15. ! [X0] : (! [X1] : pre(X1) | (~pre(s(X0)) & pre(X0)) | ~pre(0)) [flattening 14]\
+16. ! [X0] : (! [X2] : m(X0,X2) = m(X2,X0) | (? [X1] : (m(X0,s(X1)) != m(s(X1),X0) & m(X0,X1) = m(X1,X0)) | m(X0,0) != m(0,X0))) [ennf transformation 12]\
+17. ! [X0] : (! [X2] : m(X0,X2) = m(X2,X0) | ? [X1] : (m(X0,s(X1)) != m(s(X1),X0) & m(X0,X1) = m(X1,X0)) | m(X0,0) != m(0,X0)) [flattening 16]\
+18. ? [X0,X1] : m(X0,X1) != m(X1,X0) [ennf transformation 11]\
+19. ! [X0] : ((pre(X0) | ? [X1] : m(X0,X1) != m(X1,X0)) & (! [X1] : m(X0,X1) = m(X1,X0) | ~pre(X0))) [nnf transformation 7]\
+20. ! [X0] : ((pre(X0) | ? [X1] : m(X0,X1) != m(X1,X0)) & (! [X2] : m(X0,X2) = m(X2,X0) | ~pre(X0))) [rectify 19]\
+21. ! [X0] : (? [X1] : m(X0,X1) != m(X1,X0) => m(X0,sK0(X0)) != m(sK0(X0),X0)) [choice axiom]\
+22. ! [X0] : ((pre(X0) | m(X0,sK0(X0)) != m(sK0(X0),X0)) & (! [X2] : m(X0,X2) = m(X2,X0) | ~pre(X0))) [skolemisation 20,21]\
+23. ! [X0] : (! [X1] : m(X0,X1) = m(X1,X0) | ? [X2] : (m(X0,s(X2)) != m(s(X2),X0) & m(X0,X2) = m(X2,X0)) | m(X0,0) != m(0,X0)) [rectify 17]\
+24. ! [X0] : (? [X2] : (m(X0,s(X2)) != m(s(X2),X0) & m(X0,X2) = m(X2,X0)) => (m(X0,s(sK1(X0))) != m(s(sK1(X0)),X0) & m(X0,sK1(X0)) = m(sK1(X0),X0))) [choice axiom]\
+25. ! [X0] : (! [X1] : m(X0,X1) = m(X1,X0) | (m(X0,s(sK1(X0))) != m(s(sK1(X0)),X0) & m(X0,sK1(X0)) = m(sK1(X0),X0)) | m(X0,0) != m(0,X0)) [skolemisation 23,24]\
+26. ? [X0,X1] : m(X0,X1) != m(X1,X0) => m(sK2,sK3) != m(sK3,sK2) [choice axiom]\
+27. m(sK2,sK3) != m(sK3,sK2) [skolemisation 18,26]\
+30. p(X0,0) = X0 [cnf transformation 3]\
+32. 0 = m(X0,0) [cnf transformation 5]\
+33. m(X0,s(X1)) = p(m(X0,X1),X0) [cnf transformation 6]\
+34. ~pre(X0) | m(X0,X2) = m(X2,X0) [cnf transformation 22]\
+35. m(X0,sK0(X0)) != m(sK0(X0),X0) | pre(X0) [cnf transformation 22]\
+36. pre(X1) | pre(X0) | ~pre(0) [cnf transformation 15]\
+38. m(X0,X1) = m(X1,X0) | m(X0,sK1(X0)) = m(sK1(X0),X0) | m(X0,0) != m(0,X0) [cnf transformation 25]\
+39. m(X0,X1) = m(X1,X0) | m(X0,s(sK1(X0))) != m(s(sK1(X0)),X0) | m(X0,0) != m(0,X0) [cnf transformation 25]\
+40. m(sK2,sK3) != m(sK3,sK2) [cnf transformation 27]\
+42. 1 <=> pre(0) [avatar definition]\
+44. ~pre(0) <- (~1) [avatar component clause 42]\
+49. 3 <=> ! [X1] : pre(X1) [avatar definition]\
+50. pre(X1) <- (3) [avatar component clause 49]\
+52. ~1 | 3 | 3 [avatar split clause 36,49,49,42]\
+53. m(X0,s(sK1(X0))) != m(s(sK1(X0)),X0) | m(X0,X1) = m(X1,X0) | 0 != m(0,X0) [forward demodulation 39,32]\
+54. 0 != m(0,X0) | m(X0,X1) = m(X1,X0) | m(X0,sK1(X0)) = m(sK1(X0),X0) [forward demodulation 38,32]\
+61. 0 != m(0,sK0(0)) | pre(0) [superposition 35,32]\
+62. 0 != m(0,sK0(0)) <- (~1) [subsumption resolution 61,44]\
+68. 4 <=> ! [X0] : 0 = m(0,X0) [avatar definition]\
+69. 0 = m(0,X0) <- (4) [avatar component clause 68]\
+71. 5 <=> 0 = m(0,sK1(0)) [avatar definition]\
+73. 0 = m(0,sK1(0)) <- (5) [avatar component clause 71]\
+80. 0 != 0 <- (~1, 4) [superposition 62,69]\
+82. $false <- (~1, 4) [trivial inequality removal 80]\
+83. 1 | ~4 [avatar contradiction clause 82]\
+85. 0 != 0 | m(X0,0) = m(0,X0) | m(0,sK1(0)) = m(sK1(0),0) [superposition 54,32]\
+86. m(X0,0) = m(0,X0) | m(0,sK1(0)) = m(sK1(0),0) [trivial inequality removal 85]\
+87. 0 = m(0,X0) | m(0,sK1(0)) = m(sK1(0),0) [forward demodulation 86,32]\
+88. 0 = m(0,sK1(0)) | 0 = m(0,X0) [forward demodulation 87,32]\
+106. 4 | 5 [avatar split clause 88,71,68]\
+112. m(X0,X1) = m(X1,X0) <- (3) [resolution 50,34]\
+154. m(sK2,sK3) != m(sK2,sK3) <- (3) [superposition 40,112]\
+163. $false <- (3) [trivial inequality removal 154]\
+164. ~3 [avatar contradiction clause 163]\
+166. p(0,0) = m(0,s(sK1(0))) <- (5) [superposition 33,73]\
+167. 0 = m(0,s(sK1(0))) <- (5) [forward demodulation 166,30]\
+187. 0 != m(0,s(sK1(0))) | m(X0,0) = m(0,X0) | 0 != m(0,0) [superposition 53,32]\
+188. m(X0,0) = m(0,X0) | 0 != m(0,0) <- (5) [subsumption resolution 187,167]\
+189. m(X0,0) = m(0,X0) <- (5) [subsumption resolution 188,32]\
+190. 0 = m(0,X0) <- (5) [forward demodulation 189,32]\
+191. 4 | ~5 [avatar split clause 190,71,68]\
+192. $false [avatar sat refutation 52,83,106,164,191]\
+% SZS output end Proof for 13\
+% ------------------------------\
+% Version: Vampire 4.5.1 (commit 825fbfb on 2021-03-24 17:39:46 +0100)\
+% Linked with Z3 4.8.10.0 517d907567f4283ad8b48ff9c2a3f6dce838569e z3-4.8.4-4541-g517d907\
+% Termination reason: Refutation\
+\
+% Memory used [KB]: 4989\
+% Time elapsed: 0.006 s\
+% ------------------------------}

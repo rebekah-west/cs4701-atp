@@ -1,0 +1,52 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1404\cocoasubrtf470
+{\fonttbl\f0\fnil\fcharset0 Menlo-Regular;}
+{\colortbl;\red255\green255\blue255;}
+\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f0\fs22 \cf0 \CocoaLigature0 ./vampire_z3_rel_master_5315 ../../TPTP/Problems/2Start/6.tptp\
+Running in auto input_syntax mode. Trying TPTP\
+% Refutation found. Thanks to Tanya!\
+% SZS status Theorem for 6\
+% SZS output start Proof for 6\
+3. ! [X0] : p(X0,0) = X0 [input]\
+7. ! [X0] : (pre(X0) <=> ! [X1,X2] : p(p(X1,X2),X0) = p(X1,p(X2,X0))) [input]\
+8. ! [X0] : (((pre(X0) => pre(s(X0))) & pre(0)) => ! [X1] : pre(X1)) [input]\
+9. ! [X0,X1,X2] : p(p(X0,X1),X2) = p(X0,p(X1,X2)) [input]\
+10. ~! [X0,X1,X2] : p(p(X0,X1),X2) = p(X0,p(X1,X2)) [negated conjecture 9]\
+12. ! [X0] : (! [X1] : pre(X1) | ((~pre(s(X0)) & pre(X0)) | ~pre(0))) [ennf transformation 8]\
+13. ! [X0] : (! [X1] : pre(X1) | (~pre(s(X0)) & pre(X0)) | ~pre(0)) [flattening 12]\
+14. ? [X0,X1,X2] : p(p(X0,X1),X2) != p(X0,p(X1,X2)) [ennf transformation 10]\
+15. ! [X0] : ((pre(X0) | ? [X1,X2] : p(p(X1,X2),X0) != p(X1,p(X2,X0))) & (! [X1,X2] : p(p(X1,X2),X0) = p(X1,p(X2,X0)) | ~pre(X0))) [nnf transformation 7]\
+16. ! [X0] : ((pre(X0) | ? [X1,X2] : p(p(X1,X2),X0) != p(X1,p(X2,X0))) & (! [X3,X4] : p(p(X3,X4),X0) = p(X3,p(X4,X0)) | ~pre(X0))) [rectify 15]\
+17. ! [X0] : (? [X1,X2] : p(p(X1,X2),X0) != p(X1,p(X2,X0)) => p(p(sK0(X0),sK1(X0)),X0) != p(sK0(X0),p(sK1(X0),X0))) [choice axiom]\
+18. ! [X0] : ((pre(X0) | p(p(sK0(X0),sK1(X0)),X0) != p(sK0(X0),p(sK1(X0),X0))) & (! [X3,X4] : p(p(X3,X4),X0) = p(X3,p(X4,X0)) | ~pre(X0))) [skolemisation 16,17]\
+19. ? [X0,X1,X2] : p(p(X0,X1),X2) != p(X0,p(X1,X2)) => p(p(sK2,sK3),sK4) != p(sK2,p(sK3,sK4)) [choice axiom]\
+20. p(p(sK2,sK3),sK4) != p(sK2,p(sK3,sK4)) [skolemisation 14,19]\
+23. p(X0,0) = X0 [cnf transformation 3]\
+27. ~pre(X0) | p(p(X3,X4),X0) = p(X3,p(X4,X0)) [cnf transformation 18]\
+28. p(p(sK0(X0),sK1(X0)),X0) != p(sK0(X0),p(sK1(X0),X0)) | pre(X0) [cnf transformation 18]\
+29. pre(X1) | pre(X0) | ~pre(0) [cnf transformation 13]\
+31. p(p(sK2,sK3),sK4) != p(sK2,p(sK3,sK4)) [cnf transformation 20]\
+33. 1 <=> pre(0) [avatar definition]\
+40. 3 <=> ! [X1] : pre(X1) [avatar definition]\
+41. pre(X1) <- (3) [avatar component clause 40]\
+43. ~1 | 3 | 3 [avatar split clause 29,40,40,33]\
+57. p(sK0(0),sK1(0)) != p(sK0(0),p(sK1(0),0)) | pre(0) [superposition 28,23]\
+65. p(sK0(0),sK1(0)) != p(sK0(0),sK1(0)) | pre(0) [forward demodulation 57,23]\
+66. pre(0) [trivial inequality removal 65]\
+67. 1 [avatar split clause 66,33]\
+68. p(p(X0,X1),X2) = p(X0,p(X1,X2)) <- (3) [resolution 41,27]\
+79. p(sK2,p(sK3,sK4)) != p(sK2,p(sK3,sK4)) <- (3) [superposition 31,68]\
+82. $false <- (3) [trivial inequality removal 79]\
+83. ~3 [avatar contradiction clause 82]\
+90. $false [avatar sat refutation 43,67,83]\
+% SZS output end Proof for 6\
+% ------------------------------\
+% Version: Vampire 4.5.1 (commit 825fbfb on 2021-03-24 17:39:46 +0100)\
+% Linked with Z3 4.8.10.0 517d907567f4283ad8b48ff9c2a3f6dce838569e z3-4.8.4-4541-g517d907\
+% Termination reason: Refutation\
+\
+% Memory used [KB]: 4861\
+% Time elapsed: 0.004 s\
+% ------------------------------}

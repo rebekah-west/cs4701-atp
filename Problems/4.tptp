@@ -1,0 +1,36 @@
+%---- these are the axioms of Peano Arithmetic
+
+% zero is not the successor of any number
+fof(axiom_1,axiom,![X]:(~(s(X)=0))).
+
+% Two numbers of which the successors are equal are themselves equal
+fof(axiom_2,axiom,![X,Y]:((s(X)=s(Y))=>(X=Y))).
+
+% x + 0 = x
+fof(axiom_3,axiom,![X]:(p(X,0)=X)).
+
+% x + s(y) = s(x + y)
+fof(axiom_4,axiom,![X,Y]:(p(X,s(Y))=s(p(X,Y)))).
+
+% x*0 = 0
+fof(axiom_5,axiom,![X]:(m(X,0)=0)).
+
+% x*s(y) = x*y + x
+fof(axiom_6,axiom,![X,Y]:(m(X,s(Y))=p(m(X,Y),X))).
+
+% define pre as what we want to prove
+fof(a,axiom,![X]:(pre(X)<=>![Y]:(~(m(2,X)=p(m(2,Y),1))))).
+%V2
+%fof(a,axiom,![X,Y]:(pre(X,Y)<=>(~(m(2,X)=p(m(2,Y),1))))).
+
+%---- induction axiom 
+fof(induction,axiom,![X]:((pre(0)&(pre(X)=>pre(s(X))))=>![Y]:(pre(Y)))).
+%V2
+%fof(induction,axiom,![X,Y]:((pre(0,Y)&pre(X,0)&(pre(X,Y)=>pre(s(X),Y)&pre(X,s(Y))))=>![X,Y]:(pre(X,Y)))).
+
+%constants
+fof(h1,hypothesis,s(0)=1).
+fof(h1,hypothesis,s(s(0))=2).
+
+% conjecture 2x != 2y + 1
+fof(c1,conjecture,![X,Y]:(~(m(2,X)=p(m(2,Y),1)))).

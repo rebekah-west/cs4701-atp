@@ -1,0 +1,32 @@
+%---- these are the axioms of Peano Arithmetic
+
+% zero is not the successor of any number
+fof(axiom_1,axiom,![X]:(~(s(X)=0))).
+
+% Two numbers of which the successors are equal are themselves equal
+fof(axiom_2,axiom,![X,Y]:((s(X)=s(Y))=>(X=Y))).
+
+% x + 0 = x
+fof(axiom_3,axiom,![X]:(p(X,0)=X)).
+
+% x + s(y) = s(x + y)
+fof(axiom_4,axiom,![X,Y]:(p(X,s(Y))=s(p(X,Y)))).
+
+% x*0 = 0
+fof(axiom_5,axiom,![X]:(m(X,0)=0)).
+
+% x*s(y) = x*y + x
+fof(axiom_6,axiom,![X,Y]:(m(X,s(Y))=p(m(X,Y),X))).
+
+
+% define pre to be distributive property of multiplication
+% distributive property (X * (Y + Z) = (X * Y) + (X * Z)
+fof(p6,axiom,![X]:(pre(X)<=>(![Y,Z]:(m(X,p(Y,Z))=p(m(X,Y),m(X,Z)))))).
+
+
+%---- induction axiom 
+fof(induction,axiom,![X]:((pre(0)&(pre(X)=>pre(s(X))))=>![Y]:(pre(Y)))).
+fof(induction,axiom,![Y]:(m(Y,0)=m(0,Y)&(![X]:(m(Y,X)=m(X,Y)=>m(Y,s(X))=m(s(X),Y)))=>![Z]:(m(Y,Z)=m(Z,Y)))).
+
+% conjecture distributive of multiplication for all xyz, x * (y + z) = x*y + x*z
+fof(c1,conjecture,![X]:(pre(X))).

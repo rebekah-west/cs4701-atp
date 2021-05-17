@@ -1,0 +1,68 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1404\cocoasubrtf470
+{\fonttbl\f0\fnil\fcharset0 Menlo-Regular;}
+{\colortbl;\red255\green255\blue255;}
+\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f0\fs22 \cf0 \CocoaLigature0 ./vampire_z3_rel_master_5315 ../../TPTP/Problems/2Start/7.tptp\
+Running in auto input_syntax mode. Trying TPTP\
+% Refutation found. Thanks to Tanya!\
+% SZS status Theorem for 7\
+% SZS output start Proof for 7\
+3. ! [X0] : p(X0,0) = X0 [input]\
+4. ! [X0,X1] : p(X0,s(X1)) = s(p(X0,X1)) [input]\
+7. ! [X1] : ((! [X0] : (p(X0,X1) = p(X1,X0) => p(X1,s(X0)) = p(s(X0),X1)) & p(X1,0) = p(0,X1)) => ! [X2] : p(X1,X2) = p(X2,X1)) [input]\
+8. s(s(0)) = 2 [input]\
+9. ! [X0] : p(X0,2) = p(2,X0) [input]\
+10. ~! [X0] : p(X0,2) = p(2,X0) [negated conjecture 9]\
+11. ! [X0] : ((! [X1] : (p(X0,X1) = p(X1,X0) => p(X0,s(X1)) = p(s(X1),X0)) & p(X0,0) = p(0,X0)) => ! [X2] : p(X0,X2) = p(X2,X0)) [rectify 7]\
+13. ! [X0] : (! [X2] : p(X0,X2) = p(X2,X0) | (? [X1] : (p(X0,s(X1)) != p(s(X1),X0) & p(X0,X1) = p(X1,X0)) | p(X0,0) != p(0,X0))) [ennf transformation 11]\
+14. ! [X0] : (! [X2] : p(X0,X2) = p(X2,X0) | ? [X1] : (p(X0,s(X1)) != p(s(X1),X0) & p(X0,X1) = p(X1,X0)) | p(X0,0) != p(0,X0)) [flattening 13]\
+15. ? [X0] : p(X0,2) != p(2,X0) [ennf transformation 10]\
+16. ! [X0] : (! [X1] : p(X0,X1) = p(X1,X0) | ? [X2] : (p(X0,s(X2)) != p(s(X2),X0) & p(X0,X2) = p(X2,X0)) | p(X0,0) != p(0,X0)) [rectify 14]\
+17. ! [X0] : (? [X2] : (p(X0,s(X2)) != p(s(X2),X0) & p(X0,X2) = p(X2,X0)) => (p(X0,s(sK0(X0))) != p(s(sK0(X0)),X0) & p(X0,sK0(X0)) = p(sK0(X0),X0))) [choice axiom]\
+18. ! [X0] : (! [X1] : p(X0,X1) = p(X1,X0) | (p(X0,s(sK0(X0))) != p(s(sK0(X0)),X0) & p(X0,sK0(X0)) = p(sK0(X0),X0)) | p(X0,0) != p(0,X0)) [skolemisation 16,17]\
+19. ? [X0] : p(X0,2) != p(2,X0) => p(sK1,2) != p(2,sK1) [choice axiom]\
+20. p(sK1,2) != p(2,sK1) [skolemisation 15,19]\
+23. p(X0,0) = X0 [cnf transformation 3]\
+24. p(X0,s(X1)) = s(p(X0,X1)) [cnf transformation 4]\
+27. p(X0,X1) = p(X1,X0) | p(X0,sK0(X0)) = p(sK0(X0),X0) | p(X0,0) != p(0,X0) [cnf transformation 18]\
+28. p(X0,X1) = p(X1,X0) | p(X0,s(sK0(X0))) != p(s(sK0(X0)),X0) | p(X0,0) != p(0,X0) [cnf transformation 18]\
+29. s(s(0)) = 2 [cnf transformation 8]\
+30. p(sK1,2) != p(2,sK1) [cnf transformation 20]\
+31. p(s(sK0(X0)),X0) != s(p(X0,sK0(X0))) | p(X0,X1) = p(X1,X0) | p(X0,0) != p(0,X0) [forward demodulation 28,24]\
+32. p(s(sK0(X0)),X0) != s(p(X0,sK0(X0))) | p(0,X0) != X0 | p(X0,X1) = p(X1,X0) [forward demodulation 31,23]\
+33. p(0,X0) != X0 | p(X0,X1) = p(X1,X0) | p(X0,sK0(X0)) = p(sK0(X0),X0) [forward demodulation 27,23]\
+38. p(X0,2) = s(p(X0,s(0))) [superposition 24,29]\
+39. p(X0,2) = s(s(p(X0,0))) [forward demodulation 38,24]\
+40. p(X0,2) = s(s(X0)) [forward demodulation 39,23]\
+41. p(2,sK1) != s(s(sK1)) [backward demodulation 30,40]\
+51. s(s(0)) != 2 | p(2,X3) = p(X3,2) | p(2,sK0(2)) = p(sK0(2),2) [superposition 33,40]\
+65. p(2,X3) = p(X3,2) | p(2,sK0(2)) = p(sK0(2),2) [subsumption resolution 51,29]\
+66. p(2,X3) = s(s(X3)) | p(2,sK0(2)) = p(sK0(2),2) [forward demodulation 65,40]\
+67. p(2,sK0(2)) = s(s(sK0(2))) | p(2,X3) = s(s(X3)) [forward demodulation 66,40]\
+69. 3 <=> ! [X3] : p(2,X3) = s(s(X3)) [avatar definition]\
+70. p(2,X3) = s(s(X3)) <- (3) [avatar component clause 69]\
+72. 4 <=> p(2,sK0(2)) = s(s(sK0(2))) [avatar definition]\
+74. p(2,sK0(2)) = s(s(sK0(2))) <- (4) [avatar component clause 72]\
+75. 3 | 4 [avatar split clause 67,72,69]\
+152. s(s(sK1)) != s(s(sK1)) <- (3) [superposition 41,70]\
+157. $false <- (3) [trivial inequality removal 152]\
+158. ~3 [avatar contradiction clause 157]\
+187. s(s(s(sK0(2)))) != s(p(2,sK0(2))) | 2 != p(0,2) | p(2,X3) = p(X3,2) [superposition 32,40]\
+195. s(s(s(sK0(2)))) != s(s(s(sK0(2)))) | 2 != p(0,2) | p(2,X3) = p(X3,2) <- (4) [forward demodulation 187,74]\
+196. 2 != p(0,2) | p(2,X3) = p(X3,2) <- (4) [trivial inequality removal 195]\
+197. s(s(0)) != 2 | p(2,X3) = p(X3,2) <- (4) [forward demodulation 196,40]\
+198. p(2,X3) = p(X3,2) <- (4) [subsumption resolution 197,29]\
+199. p(2,X3) = s(s(X3)) <- (4) [forward demodulation 198,40]\
+200. 3 | ~4 [avatar split clause 199,72,69]\
+201. $false [avatar sat refutation 75,158,200]\
+% SZS output end Proof for 7\
+% ------------------------------\
+% Version: Vampire 4.5.1 (commit 825fbfb on 2021-03-24 17:39:46 +0100)\
+% Linked with Z3 4.8.10.0 517d907567f4283ad8b48ff9c2a3f6dce838569e z3-4.8.4-4541-g517d907\
+% Termination reason: Refutation\
+\
+% Memory used [KB]: 4989\
+% Time elapsed: 0.007 s\
+% ------------------------------}

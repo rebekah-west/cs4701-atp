@@ -1,0 +1,120 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1404\cocoasubrtf470
+{\fonttbl\f0\fnil\fcharset0 Menlo-Regular;}
+{\colortbl;\red255\green255\blue255;}
+\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f0\fs22 \cf0 \CocoaLigature0 ./vampire_z3_rel_master_5315 ../../TPTP/Problems/0Final/4.tptp\
+Running in auto input_syntax mode. Trying TPTP\
+% Refutation found. Thanks to Tanya!\
+% SZS status Theorem for 4\
+% SZS output start Proof for 4\
+1. ! [X0] : s(X0) != 0 [input]\
+2. ! [X0,X1] : (s(X0) = s(X1) => X0 = X1) [input]\
+3. ! [X0] : p(X0,0) = X0 [input]\
+4. ! [X0,X1] : p(X0,s(X1)) = s(p(X0,X1)) [input]\
+5. ! [X0] : 0 = m(X0,0) [input]\
+6. ! [X0,X1] : m(X0,s(X1)) = p(m(X0,X1),X0) [input]\
+7. ! [X0,X1] : (pre(X0,X1) <=> m(2,X0) != p(m(2,X1),1)) [input]\
+8. ! [X0,X1] : (((pre(X0,X1) => (pre(X0,s(X1)) & pre(s(X0),X1))) & pre(X0,0) & pre(0,X1)) => ! [X0,X1] : pre(X0,X1)) [input]\
+9. 1 = s(0) [input]\
+10. 2 = s(s(0)) [input]\
+11. ! [X0,X1] : m(2,X0) != p(m(2,X1),1) [input]\
+12. ~! [X0,X1] : m(2,X0) != p(m(2,X1),1) [negated conjecture 11]\
+13. ! [X0,X1] : (((pre(X0,X1) => (pre(X0,s(X1)) & pre(s(X0),X1))) & pre(X0,0) & pre(0,X1)) => ! [X2,X3] : pre(X2,X3)) [rectify 8]\
+14. ! [X0,X1] : (X0 = X1 | s(X0) != s(X1)) [ennf transformation 2]\
+15. ! [X0,X1] : (! [X2,X3] : pre(X2,X3) | (((~pre(X0,s(X1)) | ~pre(s(X0),X1)) & pre(X0,X1)) | ~pre(X0,0) | ~pre(0,X1))) [ennf transformation 13]\
+16. ! [X0,X1] : (! [X2,X3] : pre(X2,X3) | ((~pre(X0,s(X1)) | ~pre(s(X0),X1)) & pre(X0,X1)) | ~pre(X0,0) | ~pre(0,X1)) [flattening 15]\
+17. ? [X0,X1] : m(2,X0) = p(m(2,X1),1) [ennf transformation 12]\
+18. ! [X0,X1] : ((pre(X0,X1) | m(2,X0) = p(m(2,X1),1)) & (m(2,X0) != p(m(2,X1),1) | ~pre(X0,X1))) [nnf transformation 7]\
+19. ? [X0,X1] : m(2,X0) = p(m(2,X1),1) => m(2,sK0) = p(m(2,sK1),1) [choice axiom]\
+20. m(2,sK0) = p(m(2,sK1),1) [skolemisation 17,19]\
+21. s(X0) != 0 [cnf transformation 1]\
+22. s(X0) != s(X1) | X0 = X1 [cnf transformation 14]\
+23. p(X0,0) = X0 [cnf transformation 3]\
+24. p(X0,s(X1)) = s(p(X0,X1)) [cnf transformation 4]\
+25. 0 = m(X0,0) [cnf transformation 5]\
+26. m(X0,s(X1)) = p(m(X0,X1),X0) [cnf transformation 6]\
+27. m(2,X0) != p(m(2,X1),1) | ~pre(X0,X1) [cnf transformation 18]\
+28. pre(X0,X1) | m(2,X0) = p(m(2,X1),1) [cnf transformation 18]\
+29. pre(X2,X3) | pre(X0,X1) | ~pre(X0,0) | ~pre(0,X1) [cnf transformation 16]\
+30. pre(X2,X3) | ~pre(X0,s(X1)) | ~pre(s(X0),X1) | ~pre(X0,0) | ~pre(0,X1) [cnf transformation 16]\
+31. 1 = s(0) [cnf transformation 9]\
+32. 2 = s(s(0)) [cnf transformation 10]\
+33. m(2,sK0) = p(m(2,sK1),1) [cnf transformation 20]\
+35. 1 <=> ! [X1,X0] : (~pre(X0,s(X1)) | ~pre(0,X1) | ~pre(X0,0) | ~pre(s(X0),X1)) [avatar definition]\
+36. ~pre(s(X0),X1) | ~pre(0,X1) | ~pre(X0,0) | ~pre(X0,s(X1)) <- (1) [avatar component clause 35]\
+38. 2 <=> ! [X3,X2] : pre(X2,X3) [avatar definition]\
+39. pre(X2,X3) <- (2) [avatar component clause 38]\
+40. 1 | 2 [avatar split clause 30,38,35]\
+42. 3 <=> ! [X1,X0] : (pre(X0,X1) | ~pre(0,X1) | ~pre(X0,0)) [avatar definition]\
+43. ~pre(0,X1) | pre(X0,X1) | ~pre(X0,0) <- (3) [avatar component clause 42]\
+44. 3 | 2 [avatar split clause 29,38,42]\
+45. 2 = s(1) [forward demodulation 32,31]\
+46. 0 != 1 [superposition 21,31]\
+48. s(X0) != 1 | 0 = X0 [superposition 22,31]\
+49. s(X1) != 2 | 1 = X1 [superposition 22,45]\
+54. 2 != 1 | 0 = 1 [superposition 48,45]\
+55. 2 != 1 [subsumption resolution 54,46]\
+56. s(p(X0,0)) = p(X0,1) [superposition 24,31]\
+57. s(p(X1,1)) = p(X1,2) [superposition 24,45]\
+58. s(X0) = p(X0,1) [forward demodulation 56,23]\
+59. m(2,X0) != s(m(2,X1)) | ~pre(X0,X1) [backward demodulation 27,58]\
+60. pre(X0,X1) | m(2,X0) = s(m(2,X1)) [backward demodulation 28,58]\
+61. m(2,X0) != s(m(2,X1)) <- (2) [subsumption resolution 59,39]\
+62. p(X1,2) = s(s(X1)) [forward demodulation 57,58]\
+66. m(X0,s(0)) = p(0,X0) [superposition 26,25]\
+71. p(0,X0) = m(X0,1) [forward demodulation 66,31]\
+74. m(2,sK0) = s(m(2,sK1)) [superposition 33,58]\
+78. $false <- (2) [subsumption resolution 74,61]\
+79. ~2 [avatar contradiction clause 78]\
+84. m(2,s(X1)) = s(s(m(2,X1))) [superposition 62,26]\
+86. s(m(2,X0)) = m(2,0) | pre(X1,X0) | ~pre(X1,0) <- (3) [resolution 60,43]\
+87. 0 = s(m(2,X0)) | pre(X1,X0) | ~pre(X1,0) <- (3) [forward demodulation 86,25]\
+88. ~pre(X1,0) | pre(X1,X0) <- (3) [subsumption resolution 87,21]\
+92. ~pre(0,X0) | ~pre(X1,0) | ~pre(X1,s(X0)) | s(m(2,X0)) = m(2,s(X1)) <- (1) [resolution 36,60]\
+93. ~pre(1,X0) | ~pre(0,X0) | ~pre(0,0) | ~pre(0,s(X0)) <- (1) [superposition 36,31]\
+95. ~pre(0,X0) | ~pre(X1,0) | s(m(2,X0)) = m(2,s(X1)) <- (1, 3) [subsumption resolution 92,88]\
+96. ~pre(1,X0) | ~pre(0,0) | ~pre(0,s(X0)) <- (1, 3) [subsumption resolution 93,88]\
+97. ~pre(1,X0) | ~pre(0,0) <- (1, 3) [subsumption resolution 96,88]\
+99. 4 <=> pre(0,0) [avatar definition]\
+100. pre(0,0) <- (4) [avatar component clause 99]\
+101. ~pre(0,0) <- (~4) [avatar component clause 99]\
+103. 5 <=> ! [X0] : ~pre(1,X0) [avatar definition]\
+104. ~pre(1,X0) <- (5) [avatar component clause 103]\
+105. ~4 | 5 | ~1 | ~3 [avatar split clause 97,42,35,103,99]\
+115. m(2,0) = s(m(2,0)) <- (~4) [resolution 101,60]\
+116. 0 = s(0) <- (~4) [forward demodulation 115,25]\
+117. $false <- (~4) [subsumption resolution 116,21]\
+118. 4 [avatar contradiction clause 117]\
+120. pre(0,X1) <- (3, 4) [resolution 100,88]\
+121. s(m(2,X0)) = m(2,1) <- (5) [resolution 104,60]\
+122. s(m(2,X0)) = p(0,2) <- (5) [forward demodulation 121,71]\
+123. s(s(0)) = s(m(2,X0)) <- (5) [forward demodulation 122,62]\
+124. s(1) = s(m(2,X0)) <- (5) [forward demodulation 123,31]\
+125. 2 = s(m(2,X0)) <- (5) [forward demodulation 124,45]\
+127. 2 = m(2,s(X1)) | ~pre(0,X0) | ~pre(X1,0) <- (1, 3, 5) [backward demodulation 95,125]\
+128. m(2,s(X1)) = s(2) <- (5) [backward demodulation 84,125]\
+132. 2 = m(2,s(X1)) | ~pre(X1,0) <- (1, 3, 4, 5) [subsumption resolution 127,120]\
+133. 2 = s(2) | ~pre(X1,0) <- (1, 3, 4, 5) [backward demodulation 132,128]\
+135. 8 <=> ! [X1] : ~pre(X1,0) [avatar definition]\
+136. ~pre(X1,0) <- (8) [avatar component clause 135]\
+138. 9 <=> 2 = s(2) [avatar definition]\
+140. 2 = s(2) <- (9) [avatar component clause 138]\
+141. 8 | 9 | ~1 | ~3 | ~4 | ~5 [avatar split clause 133,103,99,42,35,138,135]\
+145. $false <- (4, 8) [resolution 136,100]\
+146. ~4 | ~8 [avatar contradiction clause 145]\
+161. 2 != 2 | 2 = 1 <- (9) [superposition 49,140]\
+162. 2 = 1 <- (9) [trivial inequality removal 161]\
+167. $false <- (9) [subsumption resolution 162,55]\
+168. ~9 [avatar contradiction clause 167]\
+169. $false [avatar sat refutation 40,44,79,105,118,141,146,168]\
+% SZS output end Proof for 4\
+% ------------------------------\
+% Version: Vampire 4.5.1 (commit 825fbfb on 2021-03-24 17:39:46 +0100)\
+% Linked with Z3 4.8.10.0 517d907567f4283ad8b48ff9c2a3f6dce838569e z3-4.8.4-4541-g517d907\
+% Termination reason: Refutation\
+\
+% Memory used [KB]: 4989\
+% Time elapsed: 0.005 s\
+% ------------------------------}

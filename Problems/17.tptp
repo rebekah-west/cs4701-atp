@@ -1,0 +1,32 @@
+%---- these are the axioms of Peano Arithmetic
+
+% zero is not the successor of any number
+fof(axiom_1,axiom,![X]:(~(s(X)=0))).
+
+% Two numbers of which the successors are equal are themselves equal
+fof(axiom_2,axiom,![X,Y]:((s(X)=s(Y))=>(X=Y))).
+
+% x + 0 = x
+fof(axiom_3,axiom,![X]:(p(X,0)=X)).
+
+% x + s(y) = s(x + y)
+fof(axiom_4,axiom,![X,Y]:(p(X,s(Y))=s(p(X,Y)))).
+
+% x*0 = 0
+fof(axiom_5,axiom,![X]:(m(X,0)=0)).
+
+% x*s(y) = x*y + x
+fof(axiom_6,axiom,![X,Y]:(m(X,s(Y))=p(m(X,Y),X))).
+
+
+% define multiple(X,Y) to be X divides Y
+fof(p1,axiom,![X,Y]:(multiple(X,Y)<=>(?[Z]:((m(X,Z)=Y))))).
+
+
+%---- induction axiom 
+fof(induction,axiom,![X,Y,Z]: (((m(m(Y,Z),0)=m(Y,m(Z,0)))&((m(m(Y,Z),X)=m(Y,m(Z,X)))=>(m(m(Y,Z),s(X))=m(Y,m(Z,s(X))))))=>![A,B,C]:(m(m(A,B),C)=m(A,m(B,C))))).
+
+
+% conjecture for all xyz, if x|y then zx|zy
+fof(c1,conjecture,![X,Y,Z]:(multiple(X,Y) => multiple(m(Z,X), m(Z,Y)) )).
+
